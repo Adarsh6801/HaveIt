@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { FoodService } from 'src/app/services/food.service';
 import { Food } from 'src/app/shared/models/food';
 
@@ -9,7 +10,17 @@ import { Food } from 'src/app/shared/models/food';
 })
 export class HomeComponent {
   foods:Food[]=[]
-  constructor(private foodServices:FoodService){
-    this.foods=foodServices.getAllFood()
+  constructor(private foodServices:FoodService,activatedRoute:ActivatedRoute){
+    activatedRoute.params.subscribe((params)=>{
+      console.log(params.searchTerm,'hi this is adarsh');
+      
+      if(params.searchTerm){
+      this.foods=this.foodServices.getAllFoodsBySearchTerm(params.searchTerm);
+      console.log('hiii');
+      }
+      else{
+      this.foods=foodServices.getAllFood()
+      }
+    })
   }
 }
