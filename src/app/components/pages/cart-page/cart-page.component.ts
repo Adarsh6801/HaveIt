@@ -14,7 +14,7 @@ export class CartPageComponent {
   constructor(private cartService:CartService){
     this.cartService.getCartObservable().subscribe((cart)=>{
       this.cart=cart
-      console.log(cart,'cart');
+      
       
     })
   }
@@ -22,10 +22,10 @@ export class CartPageComponent {
     this.cartService.removeFromCart(cartItem.food.id)
   }
   changeQuantity(cartItem:CartItem,quantityInString:string){
-    console.log(typeof(quantityInString));
+   
     const quantity =parseInt(quantityInString);
 
-    console.log(typeof(quantity));
+    
     
     this.cartService.changeQuantity(quantity,cartItem.food.id)
   }

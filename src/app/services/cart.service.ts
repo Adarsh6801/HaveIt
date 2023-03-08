@@ -29,7 +29,7 @@ export class CartService {
   }
 
   changeQuantity(quantity:number,foodId:string) {
-    console.log(quantity,'foodid and quantity');
+    
     
     let cartItem = this.cart.items
       .find(item => item.food.id === foodId);
